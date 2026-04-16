@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital Technologies — Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f5f0;
+  --ink: #0f0e0c;
+  --surface: #ffffff;
+  --border: #e2ddd7;
+  --a1: #c84b2f;
+  --a2: #1a3a5c;
+  --a3: #2d6a4f;
+  --a4: #7b3fa0;
+  --muted: #7a756e;
+  --head: 'Syne', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  background: var(--a2);
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  bottom: -120px; right: -120px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(200,75,47,0.15);
+}
+.hero-right {
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg);
+  position: relative;
+}
+.hero-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 40px, rgba(200,75,47,0.04) 40px, rgba(200,75,47,0.04) 41px
+  );
+}
+.logo { font-family: var(--head); font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+.logo span { color: var(--a1); }
+.hero-left h1 {
+  font-family: var(--head);
+  font-size: clamp(44px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 0.95;
+  color: #fff;
+  letter-spacing: -2px;
+  margin-top: 40px;
+}
+.hero-left h1 em { font-style: normal; color: var(--a1); }
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-top: 32px;
+}
+.hero-right-inner { position: relative; z-index: 1; }
+.hero-sub-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--a1);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero-right h2 {
+  font-family: var(--head);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.hero-right p { color: var(--muted); font-size: 15px; max-width: 420px; margin-bottom: 32px; }
+.dual-flag {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.flag-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  border: 1.5px solid var(--border);
+  color: var(--ink);
+}
+.flag-pill.uae { border-color: var(--a1); background: rgba(200,75,47,0.06); color: var(--a1); }
+.flag-pill.ind { border-color: var(--a2); background: rgba(26,58,92,0.06); color: var(--a2); }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 13px 28px;
+  border-radius: 6px;
+  font-family: var(--head);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+.btn-primary { background: var(--a1); color: #fff; }
+.btn-primary:hover { background: #a83920; }
+.btn-outline { background: transparent; color: var(--a2); border: 1.5px solid var(--a2); }
+.btn-outline:hover { background: var(--a2); color: #fff; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(248,245,240,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 64px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+}
+nav a {
+  display: block;
+  padding: 16px 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+nav a:hover { color: var(--a1); border-color: var(--a1); }
+
+/* SECTIONS */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 64px; }
+section { padding: 100px 0; }
+.divider { height: 1px; background: var(--border); margin: 0 64px; }
+.sec-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--a1);
+  margin-bottom: 12px;
+}
+.sec-title {
+  font-family: var(--head);
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 48px;
+}
+.sec-title em { font-style: normal; color: var(--a1); }
+
+/* SERVICE CARDS */
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.svc-card {
+  background: var(--surface);
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--a1);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+.svc-card:hover::before { transform: scaleX(1); }
+.svc-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); z-index: 1; }
+.svc-card.blue::before { background: var(--a2); }
+.svc-card.green::before { background: var(--a3); }
+.svc-card.purple::before { background: var(--a4); }
+.svc-icon { font-size: 32px; margin-bottom: 18px; display: block; }
+.svc-card h3 { font-family: var(--head); font-size: 20px; font-weight: 700; letter-spacing: -0.5px; color: var(--ink); margin-bottom: 10px; }
+.svc-card p { color: var(--muted); font-size: 13.5px; margin-bottom: 20px; }
+.price-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.price-chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.price-chip.aed { border-color: var(--a1); color: var(--a1); background: rgba(200,75,47,0.06); }
+.price-chip.inr { border-color: var(--a2); color: var(--a2); background: rgba(26,58,92,0.06); }
+.tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* PRICING TABLE */
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+.pricing-table th {
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  text-align: left;
+}
+.pricing-table th.uae-col { background: var(--a1); }
+.pricing-table th.inr-col { background: var(--a2); }
+.pricing-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--ink);
+}
+.pricing-table tr:hover td { background: rgba(200,75,47,0.03); }
+.pricing-table .highlight { background: rgba(200,75,47,0.05); font-weight: 600; }
+
+/* PROCESS */
+.process-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+.process-row::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--border);
+}
+.process-step { text-align: center; padding: 0 16px; position: relative; }
+.step-num {
+  width: 56px; height: 56px;
+  background: var(--surface);
+  border: 2px solid var(--a1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--a1);
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 1;
+}
+.process-step:nth-child(2) .step-num { border-color: var(--a2); color: var(--a2); }
+.process-step:nth-child(3) .step-num { border-color: var(--a3); color: var(--a3); }
+.process-step:nth-child(4) .step-num { border-color: var(--a4); color: var(--a4); }
+.process-step:nth-child(5) .step-num { border-color: var(--a1); color: var(--a1); }
+.process-step h4 { font-family: var(--head); font-size: 14px; font-weight: 700; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 6px; }
+.process-step p { font-size: 12px; color: var(--muted); }
+
+/* WHY CARDS */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.why-card {
+  display: flex;
+  gap: 20px;
+  padding: 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  align-items: flex-start;
+}
+.why-num {
+  font-family: var(--head);
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  min-width: 56px;
+}
+.why-card h4 { font-family: var(--head); font-size: 18px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.why-card p { font-size: 13px; color: var(--muted); }
+
+/* HERO STRIP */
+.strip {
+  background: var(--ink);
+  color: #fff;
+  padding: 80px 64px;
+  text-align: center;
+}
+.strip h2 { font-family: var(--head); font-size: clamp(36px, 4vw, 60px); font-weight: 800; letter-spacing: -2px; margin-bottom: 16px; }
+.strip h2 em { font-style: normal; color: var(--a1); }
+.strip p { color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto 32px; }
+.strip .dual { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-bottom: 40px; }
+.strip .dual-item { font-family: var(--mono); font-size: 13px; }
+.strip .dual-item span { color: var(--a1); }
+
+/* FOOTER */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 60px 64px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto; }
+footer h4 { font-family: var(--head); font-size: 14px; font-weight: 700; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 16px; }
+footer ul { list-style: none; }
+footer ul li { padding: 4px 0; font-size: 13px; color: var(--muted); }
+.footer-brand { font-family: var(--head); font-size: 26px; font-weight: 800; color: var(--ink); letter-spacing: -1px; margin-bottom: 10px; }
+.footer-brand span { color: var(--a1); }
+.footer-copy { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left, .hero-right { padding: 60px 28px; }
+  .container { padding: 0 28px; }
+  nav { padding: 0 28px; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .process-row { grid-template-columns: 1fr; }
+  .process-row::before { display: none; }
+  .why-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .strip { padding: 60px 28px; }
+  .divider { margin: 0 28px; }
+  footer { padding: 60px 28px; }
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-left > * { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+.hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+.hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+.hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+.hero-right-inner > * { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+.hero-right-inner > *:nth-child(1) { animation-delay: 0.3s; }
+.hero-right-inner > *:nth-child(2) { animation-delay: 0.45s; }
+.hero-right-inner > *:nth-child(3) { animation-delay: 0.55s; }
+.hero-right-inner > *:nth-child(4) { animation-delay: 0.65s; }
+.hero-right-inner > *:nth-child(5) { animation-delay: 0.75s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="logo">Nex<span>Core</span> Technologies</div>
+    <div>
+      <h1>YOUR FULL-<em>STACK</em><br>TECH PARTNER</h1>
+      <p class="hero-tag">India · UAE · Serving Businesses in INR &amp; AED</p>
+    </div>
+    <div></div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-inner">
+      <div class="hero-sub-label">Services Overview</div>
+      <h2>One Partner.<br>Every Tech Need.</h2>
+      <p>From call center staffing and custom software to cloud hosting, PBX telephony, and digital marketing — we deliver enterprise-grade solutions at SMB-friendly pricing across India and the UAE.</p>
+      <div class="dual-flag">
+        <div class="flag-pill uae">🇦🇪 UAE · AED Pricing</div>
+        <div class="flag-pill ind">🇮🇳 India · INR Pricing</div>
+      </div>
+      <div class="cta-row">
+        <a href="#services" class="btn btn-primary">Explore Services</a>
+        <a href="#pricing" class="btn btn-outline">View Pricing</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#services">Services</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#process">How It Works</a>
+  <a href="#callcenter">Call Center</a>
+  <a href="#dev">Dev &amp; Apps</a>
+  <a href="#pbx">PBX &amp; CRM</a>
+  <a href="#hosting">Hosting</a>
+  <a href="#why">Why Us</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="sec-label">What We Deliver</div>
+    <div class="sec-title">Our <em>Core Services</em></div>
+    <div class="svc-grid">
+
+      <div class="svc-card">
+        <span class="svc-icon">📞</span>
+        <h3>Call Center & Staff Outsourcing</h3>
+        <p>Trained inbound/outbound agents, customer support, telecalling, lead qualification, and virtual assistant services — on monthly contracts. Scale up or down as needed.</p>
+        <div class="tag-list"><span class="tag">Inbound</span><span class="tag">Outbound</span><span class="tag">Lead Gen</span><span class="tag">Support</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 1,800–3,500 / seat/mo</span>
+          <span class="price-chip inr">₹18,000–35,000 / seat/mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card blue">
+        <span class="svc-icon">💻</span>
+        <h3>IT Solutions & AMC</h3>
+        <p>Annual Maintenance Contracts covering server, network, CCTV, PABX, NAS, VPN, cabling, and hardware support. One call — everything fixed.</p>
+        <div class="tag-list"><span class="tag">AMC</span><span class="tag">Network</span><span class="tag">CCTV</span><span class="tag">Server</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 800–2,500 / mo</span>
+          <span class="price-chip inr">₹6,000–20,000 / mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card green">
+        <span class="svc-icon">☎️</span>
+        <h3>PBX & CRM Platform</h3>
+        <p>Cloud-hosted or on-premise FreePBX telephony with EspoCRM integration. Your own business phone system + customer management — fully managed by us.</p>
+        <div class="tag-list"><span class="tag">FreePBX</span><span class="tag">EspoCRM</span><span class="tag">DID Numbers</span><span class="tag">SIP Trunks</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 350–900 / mo</span>
+          <span class="price-chip inr">₹3,500–9,000 / mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card purple">
+        <span class="svc-icon">🖥️</span>
+        <h3>Cloud Hosting & VPS</h3>
+        <p>VPS instances, managed WordPress hosting, shared hosting, and dedicated virtual servers — all on our own hardware infrastructure. Fast, secure, local support.</p>
+        <div class="tag-list"><span class="tag">VPS</span><span class="tag">WordPress</span><span class="tag">Shared Hosting</span><span class="tag">Managed</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 80–600 / mo</span>
+          <span class="price-chip inr">₹800–6,000 / mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">⚙️</span>
+        <h3>Software Development (MERN)</h3>
+        <p>Billing systems, booking platforms, e-commerce, inventory management, ERP, Flutter cross-platform apps, and full web applications — built to your spec.</p>
+        <div class="tag-list"><span class="tag">MERN Stack</span><span class="tag">Flutter</span><span class="tag">React</span><span class="tag">Node.js</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 5,000+ / project</span>
+          <span class="price-chip inr">₹40,000+ / project</span>
+        </div>
+      </div>
+
+      <div class="svc-card blue">
+        <span class="svc-icon">📊</span>
+        <h3>Digital Marketing & SEO</h3>
+        <p>Google Ads, Meta Ads, LinkedIn campaigns, SEO audits &amp; execution, social media management, content creation, and email marketing — all under one roof.</p>
+        <div class="tag-list"><span class="tag">Google Ads</span><span class="tag">Meta Ads</span><span class="tag">SEO</span><span class="tag">Social Media</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 1,200–4,000 / mo</span>
+          <span class="price-chip inr">₹10,000–35,000 / mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card green">
+        <span class="svc-icon">📧</span>
+        <h3>Professional Mailbox Services</h3>
+        <p>Business email hosting on your domain, Google Workspace setup, Microsoft 365, custom mail server deployment, spam filtering, email archiving, and signature management.</p>
+        <div class="tag-list"><span class="tag">Business Email</span><span class="tag">Google Workspace</span><span class="tag">Microsoft 365</span><span class="tag">Custom Domain</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 25–80 / mailbox/mo</span>
+          <span class="price-chip inr">₹200–700 / mailbox/mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card purple">
+        <span class="svc-icon">🔒</span>
+        <h3>Security & Backup</h3>
+        <p>Firewall setup, endpoint protection, email security, access control systems, time &amp; attendance, and automated offsite data backup — keep your business protected.</p>
+        <div class="tag-list"><span class="tag">Firewall</span><span class="tag">Backup</span><span class="tag">Access Control</span><span class="tag">Email Security</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 400–1,500 / mo</span>
+          <span class="price-chip inr">₹3,500–12,000 / mo</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <span class="svc-icon">🌐</span>
+        <h3>Web &amp; Cross-Platform Apps</h3>
+        <p>Responsive websites, progressive web apps (PWAs), React Native and Flutter applications for iOS, Android, and web from a single codebase. Brand-to-launch.</p>
+        <div class="tag-list"><span class="tag">React Native</span><span class="tag">PWA</span><span class="tag">iOS &amp; Android</span><span class="tag">Web</span></div>
+        <div class="price-row">
+          <span class="price-chip aed">AED 3,500+ / project</span>
+          <span class="price-chip inr">₹28,000+ / project</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- PRICING TABLE -->
+<section id="pricing">
+  <div class="container">
+    <div class="sec-label">Transparent Pricing</div>
+    <div class="sec-title">Service <em>Rate Card</em></div>
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Plan / Unit</th>
+          <th class="uae-col">AED (UAE)</th>
+          <th class="inr-col">INR (India)</th>
+          <th>Contract</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Call Center Agent</td><td>Per Seat / Month</td><td>AED 1,800–3,500</td><td>₹18,000–35,000</td><td>Monthly</td></tr>
+        <tr class="highlight"><td>IT AMC</td><td>Per Location / Year</td><td>AED 9,600–30,000</td><td>₹72,000–2,40,000</td><td>Annual</td></tr>
+        <tr><td>FreePBX + CRM</td><td>Up to 10 users</td><td>AED 350/mo</td><td>₹3,500/mo</td><td>Monthly SaaS</td></tr>
+        <tr><td>VPS Hosting</td><td>2 vCPU / 4GB RAM</td><td>AED 80/mo</td><td>₹800/mo</td><td>Monthly</td></tr>
+        <tr><td>Professional Mailbox</td><td>Per mailbox</td><td>AED 25–80/mo</td><td>₹200–700/mo</td><td>Monthly</td></tr>
+        <tr class="highlight"><td>MERN App — Billing/Booking</td><td>Standard Package</td><td>AED 8,000–18,000</td><td>₹65,000–1,50,000</td><td>Project</td></tr>
+        <tr><td>E-Commerce Platform</td><td>Full Build</td><td>AED 12,000–25,000</td><td>₹1,00,000–2,00,000</td><td>Project</td></tr>
+        <tr><td>Flutter Mobile App</td><td>iOS + Android</td><td>AED 10,000–22,000</td><td>₹80,000–1,80,000</td><td>Project</td></tr>
+        <tr class="highlight"><td>Digital Marketing Retainer</td><td>Full Service</td><td>AED 1,200–4,000/mo</td><td>₹10,000–35,000/mo</td><td>Monthly</td></tr>
+        <tr><td>SEO Package</td><td>Monthly + Reporting</td><td>AED 600–1,800/mo</td><td>₹5,000–15,000/mo</td><td>Monthly</td></tr>
+        <tr><td>Security &amp; Backup</td><td>Bundle with AMC</td><td>AED 400–1,500/mo</td><td>₹3,500–12,000/mo</td><td>Monthly</td></tr>
+        <tr><td>Google Workspace Setup</td><td>Per Domain</td><td>AED 350 setup + AED 60/mailbox</td><td>₹2,800 setup + ₹500/mailbox</td><td>Monthly</td></tr>
+      </tbody>
+    </table>
+    <div style="background:rgba(200,75,47,0.06);border:1px solid rgba(200,75,47,0.2);border-radius:10px;padding:24px 28px;">
+      <strong style="font-family:var(--head);font-size:18px;color:var(--a1)">💡 Bundle &amp; Save</strong>
+      <p style="color:var(--muted);font-size:13.5px;margin-top:6px">Combine 2 or more services and get 10–15% off your total monthly bill. Ask us about our All-in-One Business Pack — AMC + PBX + Email + Hosting bundled for one flat monthly fee.</p>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="sec-label">How It Works</div>
+    <div class="sec-title">From Lead to <em>Live</em> in 5 Steps</div>
+    <div class="process-row">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h4>Discovery Call</h4>
+        <p>30-min consultation to understand your business needs and goals</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h4>Free Audit</h4>
+        <p>Free IT health check or service demo — no commitment required</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h4>Proposal</h4>
+        <p>Custom quote in AED &amp; INR delivered within 24 hours</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h4>Setup &amp; Onboarding</h4>
+        <p>Dedicated onboarding. Most services live within 2–6 weeks</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">5</div>
+        <h4>Ongoing Support</h4>
+        <p>Dedicated account manager + 24/7 tech helpdesk included</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- CALL CENTER DETAIL -->
+<section id="callcenter">
+  <div class="container">
+    <div class="sec-label">Call Center &amp; Staffing</div>
+    <div class="sec-title">Hire <em>Ready Agents</em></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <div>
+        <p style="color:var(--muted);margin-bottom:28px">We provide fully trained call center professionals for your business — handling customer service, sales calls, appointment booking, and lead generation. You get the output without the HR overhead.</p>
+        <table class="pricing-table">
+          <thead><tr><th>Role</th><th class="uae-col">AED/mo</th><th class="inr-col">INR/mo</th></tr></thead>
+          <tbody>
+            <tr><td>Inbound Support Agent</td><td>AED 1,800</td><td>₹18,000</td></tr>
+            <tr><td>Outbound Sales Agent</td><td>AED 2,200</td><td>₹22,000</td></tr>
+            <tr><td>Lead Qualification Agent</td><td>AED 2,000</td><td>₹20,000</td></tr>
+            <tr><td>Bilingual Agent (Eng+Arabic/Hindi)</td><td>AED 2,800</td><td>₹28,000</td></tr>
+            <tr><td>Team Lead / Supervisor</td><td>AED 3,500</td><td>₹35,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4 style="font-family:var(--head);font-size:22px;font-weight:800;letter-spacing:-0.5px;margin-bottom:16px">What's Included</h4>
+        <ul style="list-style:none">
+          <li style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted);padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--a1)">→</span> Trained, onboarded agents ready in 3–5 weeks</li>
+          <li style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted);padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--a1)">→</span> FreePBX telephony system included</li>
+          <li style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted);padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--a1)">→</span> CRM with call logging &amp; reporting</li>
+          <li style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted);padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--a1)">→</span> Quality monitoring &amp; weekly performance reports</li>
+          <li style="padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--muted);padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--a1)">→</span> Scale from 1 agent to 50+ with no setup fees</li>
+          <li style="padding:10px 0;font-size:14px;color:var(--muted);padding-left:20px;position:relative"><span style="position:absolute;left:0;color:var(--a1)">→</span> First week free trial for new clients</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- DEV -->
+<section id="dev">
+  <div class="container">
+    <div class="sec-label">Software Development</div>
+    <div class="sec-title">Products We <em>Build</em></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">🧾</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">Billing System</h4>
+        <p style="font-size:12px;color:var(--muted)">Invoicing, subscriptions, GST/VAT filing, payment gateway integration</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">📅</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">Booking Platform</h4>
+        <p style="font-size:12px;color:var(--muted)">Appointment scheduling, calendar sync, reminders, staff management</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">🛍️</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">E-Commerce</h4>
+        <p style="font-size:12px;color:var(--muted)">Product catalog, cart, checkout, multi-currency (AED + INR), order management</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">📦</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">Inventory System</h4>
+        <p style="font-size:12px;color:var(--muted)">Stock tracking, purchase orders, supplier management, barcode scanning</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">🏢</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">ERP Platform</h4>
+        <p style="font-size:12px;color:var(--muted)">HR, payroll, finance, operations in one connected system</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">📱</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">Flutter Mobile App</h4>
+        <p style="font-size:12px;color:var(--muted)">Cross-platform iOS &amp; Android apps — single codebase, native performance</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">🌐</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">Web Applications</h4>
+        <p style="font-size:12px;color:var(--muted)">Progressive web apps, dashboards, portals, custom SaaS tools</p>
+      </div>
+      <div style="padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:8px">
+        <div style="font-size:28px;margin-bottom:12px">🔗</div>
+        <h4 style="font-family:var(--head);font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px">API &amp; Integrations</h4>
+        <p style="font-size:12px;color:var(--muted)">Connect your systems — payment gateways, CRMs, ERPs, third-party APIs</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="sec-label">Our Advantage</div>
+    <div class="sec-title">Why <em>Capital.Tech</em></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <div>
+          <h4>Own Infrastructure</h4>
+          <p>We run our own Proxmox hardware servers — no third-party cloud markups. You get faster, cheaper hosting and full data control.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <div>
+          <h4>India + UAE Presence</h4>
+          <p>Billing in both AED and INR. Local support, local compliance, and teams that understand your market — whether you're in Dubai or Delhi.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <div>
+          <h4>Full Stack — No Middlemen</h4>
+          <p>We build, host, manage, and market — in-house. No subcontracting means faster delivery and lower cost for you.</p>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <div>
+          <h4>One Account Manager</h4>
+          <p>One point of contact for all services. No ticket queues routed across 5 vendors. Real answers, fast.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="strip" id="contact">
+  <h2>Ready to Get <em>Started?</em></h2>
+  <p>Book a free 30-minute discovery call. We'll audit your current setup and show you exactly how we can save you time, money, and headaches.</p>
+  <div class="dual">
+    <div class="dual-item">🇦🇪 UAE: <span>+971 XX XXX XXXX</span></div>
+    <div class="dual-item">🇮🇳 India: <span>+91 XXXXX XXXXX</span></div>
+    <div class="dual-item">✉️ Email: <span>hello@capital.tech</span></div>
+  </div>
+  <a href="#" class="btn btn-primary">Book Free Audit →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Nex<span>Core</span></div>
+      <p style="font-size:13px;color:var(--muted);max-width:280px">Full-stack technology partner for businesses in India and the UAE. Infra to apps, telephony to marketing.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li>Call Center & Staffing</li>
+        <li>IT AMC & Solutions</li>
+        <li>PBX & CRM</li>
+        <li>Mailbox Services</li>
+        <li>Hosting & VPS</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Development</h4>
+      <ul>
+        <li>Billing & Booking Apps</li>
+        <li>E-Commerce</li>
+        <li>Flutter Mobile Apps</li>
+        <li>Web Applications</li>
+        <li>API Integrations</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Marketing</h4>
+      <ul>
+        <li>Google Ads</li>
+        <li>Meta Ads</li>
+        <li>SEO</li>
+        <li>Social Media</li>
+        <li>Email Marketing</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Capital TECHNOLOGIES · INDIA &amp; UAE · ALL RIGHTS RESERVED</div>
+</footer>
+
+</body>
+</html>
